@@ -412,3 +412,111 @@ footer nav a:hover { color: var(--brand); }
   .cta { padding: 28px 24px; }
   .contact-card { padding: 36px 24px; }
 }
+
+/* ---------------- WeChat in-app browser guide ---------------- */
+/* Only rendered when the page is opened inside WeChat (see assets/wechat.js) */
+
+/* keeps the footer clear of the fixed bottom bar */
+.wx-env { padding-bottom: 58px; }
+
+.wx-mask {
+  position: fixed;
+  inset: 0;
+  z-index: 999;
+  display: none;
+  align-items: flex-end;
+  justify-content: center;
+  background: rgba(8, 12, 22, .68);
+  backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(3px);
+  padding: 20px;
+}
+.wx-mask.is-open { display: flex; }
+
+/* arrow pointing at the "..." menu, top right */
+.wx-arrow {
+  position: absolute;
+  top: 12px;
+  right: 16px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 600;
+  text-shadow: 0 1px 6px rgba(0, 0, 0, .55);
+  animation: wx-nudge 1.6s ease-in-out infinite;
+}
+.wx-arrow svg { transform: rotate(90deg); }   /* points up towards the menu */
+@keyframes wx-nudge {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-5px); }
+}
+
+.wx-box {
+  position: relative;
+  width: 100%;
+  max-width: 400px;
+  padding: 26px 24px 16px;
+  border-radius: 22px;
+  background: #fff;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, .3);
+  text-align: center;
+  animation: wx-rise .22s ease-out;
+}
+@keyframes wx-rise {
+  from { transform: translateY(18px); opacity: 0; }
+  to   { transform: translateY(0);    opacity: 1; }
+}
+
+.wx-box h3 { font-size: 19px; margin: 0 0 10px; }
+.wx-box p  { font-size: 15px; color: var(--muted); margin: 0 0 18px; }
+.wx-box p b { color: var(--ink); }
+
+.wx-close {
+  display: block;
+  width: 100%;
+  padding: 13px;
+  border: 0;
+  border-radius: 14px;
+  background: linear-gradient(135deg, var(--brand), var(--brand-2));
+  color: #fff;
+  font-size: 16px;
+  font-weight: 600;
+  font-family: inherit;
+  cursor: pointer;
+}
+.wx-close:active { filter: brightness(.94); }
+
+/* persistent bottom bar */
+.wx-bar {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 900;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 11px 16px;
+  background: #0b1220;
+  color: rgba(255, 255, 255, .88);
+  font-size: 13.5px;
+  line-height: 1.45;
+  box-shadow: 0 -4px 20px rgba(0, 0, 0, .18);
+}
+.wx-bar b { color: #fff; }
+.wx-bar button {
+  flex: none;
+  padding: 7px 16px;
+  border: 0;
+  border-radius: 999px;
+  background: #fff;
+  color: var(--ink);
+  font-size: 14px;
+  font-weight: 600;
+  font-family: inherit;
+  cursor: pointer;
+}
+
